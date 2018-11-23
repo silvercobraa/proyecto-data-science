@@ -1,0 +1,11 @@
+train_test_files/
+facial landmark/
+Images/
+landmark_txt/
+Save/
+__pycache__/
+*.npy
+*.xlsx
+*.zip
+*.pdf
+*.txt
