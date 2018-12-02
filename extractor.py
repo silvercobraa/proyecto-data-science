@@ -1,3 +1,5 @@
+import numpy as np
+
 class Extractor(object):
     """Clase encargada de extraer las features de interés para la regresión. Esto puede ser distancias importantes de la cara, ratios, u otro."""
     def __init__(self):
@@ -6,8 +8,8 @@ class Extractor(object):
     def extract(self, X):
         '''No implementado aún. Recibe un vector de (n, 86, 2). Retorna un vector de (n, d), donde d es la cantidad de features.'''
         X_ratios= []
-        
-        for i in range(X.shape[0]):	
+
+        for i in range(X.shape[0]):
         	ratios = []
 
         	#Ratio 1: mideye distance to interocular distance
@@ -78,7 +80,7 @@ class Extractor(object):
         	ratios.append(ratio_14)
 
         	#Ratio 15: Length of nose to nose-chin distance
-        	midUp_nose = X[i][72] - X[i][60] / 2
+        	midUp_nose = (X[i][72] - X[i][60]) / 2
         	length_nose = np.linalg.norm(midUp_nose - X[i][66])
         	ratio_15 = length_nose / noseChin_dist
         	ratios.append(ratio_15)
@@ -94,7 +96,7 @@ class Extractor(object):
         	X_ratios.append(ratios)
 
         X_ratios = np.asarray(X_ratios)
-        
+
         return X_ratios
 
 if __name__ == '__main__':
